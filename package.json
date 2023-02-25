@@ -6,7 +6,8 @@
   "scripts": {
     "local": "ts-node server.ts",
     "prebuild": "rm -rf dist",
-    "build": "esbuild getAllUsers.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js",
+    "build:getAllUsers": "esbuild getAllUsers.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js",
+    "build:validateDuplicate": "esbuild vaildateDuplicate.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js",
     "postbuild": "cd dist && zip -r index.zip index.js*"
   },
   "dependencies": {
