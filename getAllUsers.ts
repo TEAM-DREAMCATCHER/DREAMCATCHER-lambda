@@ -1,12 +1,13 @@
 import { Context, APIGatewayProxyResult, APIGatewayEvent } from 'aws-lambda';
-import { getAllUsers } from './mongo-modules';
+import { getUser } from './mongo-modules';
 
 export const handler = async (event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> => {
     try {
-        const allData = await getAllUsers();
+        const { username } = event.queryStringParameters || {};
+        const data = await getUser(username);
         return {
             statusCode : 200,
-            body : JSON.stringify(allData),
+            body : JSON.stringify(data),
         };
     } catch (err) {
         console.error(err);

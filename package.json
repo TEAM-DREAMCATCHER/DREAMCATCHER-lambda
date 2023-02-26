@@ -6,13 +6,17 @@
   "scripts": {
     "local": "ts-node server.ts",
     "prebuild": "rm -rf dist",
-    "build:getAllUsers": "esbuild getAllUsers.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js",
-    "build:validateDuplicate": "esbuild vaildateDuplicate.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js",
+    "build:getAllUsers": "esbuild getAllUsers.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js && npm run postbuild",
+    "build:validateDuplicate": "esbuild vaildateDuplicate.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js && npm run postbuild",
+    "build:token": "esbuild login.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js && npm run postbuild",
+    "build:signup": "esbuild signup.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js && npm run postbuild",
+    "build:getDreamsDate": "esbuild getDreamsDate.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js && npm run postbuild",
     "postbuild": "cd dist && zip -r index.zip index.js*"
   },
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
     "mongodb": "^5.1.0",
     "mongoose": "^6.10.0",
     "ts-node": "^10.9.1",

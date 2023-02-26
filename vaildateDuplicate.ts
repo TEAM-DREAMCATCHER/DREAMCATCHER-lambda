@@ -18,7 +18,7 @@ export const handler = async (event: ModifiedAPIGatewayEvent, context: Context):
                 statusCode : 400,
                 body : JSON.stringify({
                     message : 'Missing username.',
-                    result : false
+                    result : false,
                 }),
             };
         }
@@ -27,14 +27,16 @@ export const handler = async (event: ModifiedAPIGatewayEvent, context: Context):
             return {
                 statusCode : 200,
                 body : JSON.stringify({
-                    message : 'valid username'
+                    message : 'valid username',
+                    result : true,
                 }),
             };
         } else {
             return {
                 statusCode : 400,
                 body : JSON.stringify({
-                    message : 'Invalid username'
+                    message : 'Invalid username',
+                    result: false,
                 }),
             };
         }
