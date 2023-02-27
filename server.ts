@@ -5,6 +5,7 @@ import { handler as validateDuplicate } from './vaildateDuplicate';
 import { handler as signup } from './signup';
 import { handler as makeToken } from './login';
 import { handler as getDreamsDate } from './getDreamsDate';
+import { handler as myDreams } from './myDreams'
 
 const app = express();
 
@@ -101,6 +102,23 @@ app.get('/api/community/date', async (req: any, res: any) => {
         req.headers.Authorization = req.headers.authentication;
 
         const data = await getDreamsDate(req, res);
+        res.status(data.statusCode).send({
+            body : JSON.parse(data.body)
+        });
+    } catch (err) {
+        if (err instanceof Error) {
+            console.error(err);
+            res.status(500).send({ message : err.message });
+        }
+    }
+});
+
+// 내가 쓴 글 가져오기
+app.get('/api/mydreams', async (req: any, res: any) => {
+    try {
+        req.headers.Authorization = req.headers.authentication;
+
+        const data = await myDreams(req, res);
         res.status(data.statusCode).send({
             body : JSON.parse(data.body)
         });

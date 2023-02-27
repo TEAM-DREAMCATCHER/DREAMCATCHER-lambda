@@ -11,6 +11,7 @@
     "build:token": "esbuild login.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js && npm run postbuild",
     "build:signup": "esbuild signup.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js && npm run postbuild",
     "build:getDreamsDate": "esbuild getDreamsDate.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js && npm run postbuild",
+    "build:myDreams": "esbuild myDreams.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js && npm run postbuild",
     "postbuild": "cd dist && zip -r index.zip index.js*"
   },
   "dependencies": {

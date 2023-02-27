@@ -7,7 +7,7 @@ export const handler = async (event: APIGatewayEvent, context: Context): Promise
         const token = event.headers.authorization?.split(' ')[1];
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const username = decoded.sub;
+        let username = decoded.sub;
         const userData = await getUser(username)
         if (userData?.username !== username || userData?.username === undefined) {
             return {

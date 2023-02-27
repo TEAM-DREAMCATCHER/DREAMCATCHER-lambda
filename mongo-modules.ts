@@ -61,7 +61,23 @@ export async function signup(username, password) {
 export async function getDreamsDate() {
     try {
         const db = await connectToDatabase();
-        const data = await db.collection('dreams').find({ pri : false }).sort({ createdAt : -1 }).toArray();
+        const data = await db.collection('dreams').find({ pub : true }).sort({ createdAt : -1 }).toArray();
+        return data;
+    } catch (err) {
+        if (err instanceof Error) {
+            return {
+                statusCode : 500,
+                message : err.message,
+            };
+        }
+    }
+}
+
+// 내 꿈 기록 가져오기
+export async function myDreams(username) {
+    try {
+        const db = await connectToDatabase();
+        const data = await db.collection('dreams').find({ username : username }).toArray();
         return data;
     } catch (err) {
         if (err instanceof Error) {
